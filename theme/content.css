@@ -145,19 +145,18 @@ li.header dl.row-item dt .list-inner {
 .row .list-inner { padding: 4px 0; }
 
 dl.row-item {
-	background-position: 10px 50%;		/* Position of folder icon */
+	background-position: 10px 6px;		/* Position of folder icon */
 	background-repeat: no-repeat;
-	background-size: 32px;
 }
 
 dl.row-item dt {
 	background-repeat: no-repeat;
 	background-position: 5px 95%;		/* Position of topic icon */
-	background-size: 17px;
+	background-size: 16px 16px;
 }
 
 dl.row-item dt .list-inner {
-	padding-left: 52px;					/* Space for folder icon */
+	padding-left: 62px;					/* Space for folder icon */
 }
 
 dl.row-item dt, dl.row-item dd {

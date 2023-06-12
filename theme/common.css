@@ -139,7 +139,7 @@ a:hover	{ text-decoration: underline; }
 ---------------------------------------- */
 .wrap {
 	margin: 0 auto;
-	max-width: 1152px;
+	max-width: 96%;
 	min-width: 625px;
 	border-top: 7px solid;
 }
@@ -176,7 +176,7 @@ a:hover	{ text-decoration: underline; }
 
 .site_logo {
 	display: inline-block;
-	width: 297px;
+	width: 400px;
 	height: 99px;
 }
 

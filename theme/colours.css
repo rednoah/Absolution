@@ -450,18 +450,19 @@ dl.faq dt {
 ----------------------------------------*/
 /* Quote block */
 blockquote {
-	background-color: #EBEADD;
-	border-color:#DBDBCE;
+	background-color: #eff8ff;
+	border-color: #77a8ce;
+	border-style: dashed;
 }
 
 blockquote blockquote {
 	/* Nested quotes */
-	background-color:#EFEED9;
+	background-color: #e7f4fe;
 }
 
 blockquote blockquote blockquote {
 	/* Nested quotes */
-	background-color: #EBEADD;
+	background-color: #d5ecfe;
 }
 
 /* Code block */
@@ -739,7 +740,8 @@ Colours and backgrounds for buttons.css
 }
 
 .search-header .inputbox {
-	    padding: 15px !important;
+	padding: 15px !important;
+	color: ghostwhite !important;
 }
 
 /* Icon images
@@ -840,7 +842,7 @@ ul.cplist {
 }
 
 .panel-container table.table1 thead th {
-	color: #333333;
+	color: #FFFFFF;
 	border-bottom-color: #333333;
 }
 
