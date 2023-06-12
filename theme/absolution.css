@@ -4,6 +4,10 @@
 	font-family: 'Noto Sans', sans-serif;
 }
 
+code * {
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+}
+
 .navbar > .inner > ul > li > a > i, ul#nav-footer > li.breadcrumbs > span.crumb > a > i, .copyright a {
 	color: #EA8708;
 }
