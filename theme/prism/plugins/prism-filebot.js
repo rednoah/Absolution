@@ -6,7 +6,7 @@
 
 	Prism.languages.filebot = {
 		'executable': {
-			pattern: /(^|[\s;|&]|[<>]\()(?:filebot)(?=$|[)\s;|&])/,
+			pattern: /(^|[\s;|&]|[<>]\()(?:filebot|(?:fn|dev|g)[:][a-z]+|artwork|cover|nfo|url|metadata|import|srt|subtitles|finder|tags|date|chmod|touch|reveal|prune|clean|refresh)(?=$|[)\s;|&])/,
 			lookbehind: true,
 			alias: 'function'
 		},
