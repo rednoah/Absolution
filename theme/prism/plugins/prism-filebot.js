@@ -4,6 +4,7 @@
 		return;
 	}
 
+	// custom syntax patterns
 	Prism.languages.filebot = {
 		'executable': {
 			pattern: /(^|[\s;|&]|[<>]\()(?:filebot|(?:fn|dev)[:][.a-z]+|TheMovieDB::TV|TheTVDB|AniDB|TheMovieDB|OMDb|AcoustID|ID3|xattr|file|exif|MOVE|COPY|SYMLINK|HARDLINK|KEEPLINK|DUPLICATE|CLONE|TEST|SKIP|OVERRIDE|AUTO|INDEX|FAIL|artwork|cover|nfo|url|metadata|import|srt|subtitles|finder|tags|date|chmod|touch|reveal|prune|clean|refresh|OFF|SEVERE|WARNING|INFO|CONFIG|FINE|FINER|FINEST|ALL)(?=$|[)\s;|&])/i,
@@ -22,6 +23,7 @@
 		}
 	};
 
+	// add format syntax
 	Prism.languages.format = {
 		'expression-1': {
 			pattern: /{[^{}]+}/,
@@ -37,46 +39,81 @@
 			pattern: /{(?:{(?:{[^{}]+}|[^{}])+}|[^{}])+}/,
 			greedy: true,
 			inside: Prism.languages.groovy
-		}
+		},
+		'concat': Prism.languages.filebot.concat
 	};
 
-	// highlight custom keywords
-	Prism.hooks.add('before-highlight', function (env) {
-		if (env.language === 'bash' && env.grammar && !env.grammar.executable) {
-			env.grammar.executable = Prism.languages.filebot.executable;
-			env.grammar.include = Prism.languages.filebot.include;
-			env.grammar.string[0].inside.include = Prism.languages.filebot.include;
-			env.grammar.string[3].inside = [Prism.languages.filebot.include];
-			return;
-		}
+	// extend bash syntax
+	Prism.languages.bash.executable = Prism.languages.filebot.executable;
+	Prism.languages.bash.include = Prism.languages.filebot.include;
+	Prism.languages.bash.string[0].inside.include = Prism.languages.filebot.include;
+	Prism.languages.bash.string[3].inside = [Prism.languages.filebot.include];
 
-		if (env.language === 'groovy' && env.grammar && !env.grammar.concat) {
-			env.grammar.concat = Prism.languages.filebot.concat;
-			return;
-		}
+	// extend groovy syntax
+	Prism.languages.groovy.concat = Prism.languages.filebot.concat;
+
+	// map option value to language
+	let options = {
+		'--format': 'format',
+		'--q': 'format',
+		'--mapper': 'groovy',
+		'--filter': 'groovy',
+		'--file-filter': 'groovy',
+		'--apply': 'groovy'
+	}
+
+	// highlight format expressions in command-line option values
+	Prism.hooks.add('after-tokenize', env => {
+		if (env.language === 'bash' || env.language === 'shellsession') {
+			// select option value language depending on the context
+			var previousToken = {};
+
+			env.tokens.filter(token => token instanceof Prism.Token).forEach(token => {
+				if (previousToken.type == 'parameter' && token.type == 'string') {
+					let language = options[previousToken.content]
+					if (language) {
+						token.content = token.content.map(s => {
+							if (typeof s == 'string') {
+								if (s.startsWith('"') && s.endsWith('"')) {
+									return ['"', Prism.tokenize(s.substring(1, s.length - 1), Prism.languages[language]), '"']
+								}
+								if (s.startsWith("'") && s.endsWith("'")) {
+									return ["'", Prism.tokenize(s.substring(1, s.length - 1), Prism.languages[language]), "'"]
+								}
+							}
+							return s
+						});
+					}
+				}
+				previousToken = token
+			});
+		}		
 	});
 
-	// highlight groovy code embedded in command-line arguments
-	Prism.hooks.add('wrap', function (env) {
-		// highlight groovy argument values
-		if (env.type === 'string' || env.language === 'bash' || env.language === 'shellsession') {
-			if (env.content.search(/^['"]\s*{|}\s*["']$]/s) >= 0) {
-				env.content = env.content.replace(/{.+}/s, function (format) {
-					return Prism.highlight(format, Prism.languages.format, 'format');
+	// highlight regex code in Groovy slashy String values
+	Prism.hooks.add('after-tokenize', env => {
+		if (env.language == 'format' || env.language == 'groovy') {
+			function regex(tokens) {
+				tokens.filter(token => token instanceof Prism.Token).forEach(token => {
+					if (token.type == 'interpolation-string') {
+						token.content = token.content.map(i => {
+							let s = i.content
+							if (typeof s == 'string') {
+								if (s.startsWith('/') && s.endsWith('/') && s.length > 2) {
+									return ['/', Prism.tokenize(s.substring(1, s.length - 1), Prism.languages.regex), '/']	
+								}
+							}
+							return i
+						});
+						return
+					}
+					if (token.content instanceof Array) {
+						regex(token.content)
+						return
+					}
 				});
 			}
-		}
-	});
-
-	// highlight regex code embedded in Groovy slashy String values
-	Prism.hooks.add('wrap', function (env) {
-		// highlight regex argument values
-		if (env.type === 'string' || env.language === 'groovy') {
-			var s = env.content;
-			if (s.startsWith('/') && s.endsWith('/') && s.length > 2) {
-				var regex = Prism.highlight(s.substring(1, s.length - 1), Prism.languages.regex, 'regex');
-				env.content = '/' + regex + '/';
-			}
+			regex(env.tokens)
 		}
 	});
 
