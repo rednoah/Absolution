@@ -22,6 +22,24 @@
 		}
 	};
 
+	Prism.languages.format = {
+		'expression-1': {
+			pattern: /{[^{}]+}/,
+			greedy: true,
+			inside: Prism.languages.groovy
+		},
+		'expression-2': {
+			pattern: /{(?:{[^{}]+}|[^{}])+}/,
+			greedy: true,
+			inside: Prism.languages.groovy
+		},
+		'expression-3': {
+			pattern: /{(?:{(?:{[^{}]+}|[^{}])+}|[^{}])+}/,
+			greedy: true,
+			inside: Prism.languages.groovy
+		}
+	};
+
 	// highlight custom keywords
 	Prism.hooks.add('before-highlight', function (env) {
 		if (env.language === 'bash' && env.grammar && !env.grammar.executable) {
@@ -42,10 +60,10 @@
 	Prism.hooks.add('wrap', function (env) {
 		// highlight groovy argument values
 		if (env.type === 'string' || env.language === 'bash' || env.language === 'shellsession') {
-			var s = env.content;
-			if (s.startsWith('"{') && s.endsWith('}"') || s.startsWith("'{") && s.endsWith("}'")) {
-				var groovy = Prism.highlight(s.substring(1, s.length - 1), Prism.languages.groovy, 'groovy');
-				env.content = s[0] + groovy + s[s.length - 1];
+			if (env.content.search(/^['"]\s*{|}\s*["']$]/s) >= 0) {
+				env.content = env.content.replace(/{.+}/s, function (format) {
+					return Prism.highlight(format, Prism.languages.format, 'format');
+				});
 			}
 		}
 	});
@@ -55,9 +73,9 @@
 		// highlight regex argument values
 		if (env.type === 'string' || env.language === 'groovy') {
 			var s = env.content;
-			if (s.startsWith('/') && s.endsWith('/')) {
+			if (s.startsWith('/') && s.endsWith('/') && s.length > 2) {
 				var regex = Prism.highlight(s.substring(1, s.length - 1), Prism.languages.regex, 'regex');
-				env.content = s[0] + regex + s[s.length - 1];
+				env.content = '/' + regex + '/';
 			}
 		}
 	});
