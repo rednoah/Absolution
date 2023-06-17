@@ -46,6 +46,7 @@ div.bbcode-exception > pre > code {
 
 div.bbcode-format > pre > code,
 div.bbcode-groovy > pre > code,
+div.bbcode-properties > pre > code,
 div.bbcode-text > pre > code {
 	color: #2E8B57;
 }
@@ -75,5 +76,5 @@ div.bbcode-output > pre > code {
 }
 
 code span.token {
-	background: none;
+	background: none !important;
 }
