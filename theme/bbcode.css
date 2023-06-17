@@ -68,7 +68,6 @@ div.bbcode-output > p > a {
 
 div.bbcode-output > pre > code {
 	font-size: 9pt;
-	line-height: 1.2em;
 	color: #DBDEE1;
 	max-height: 460px;
 	overflow: visible;
