@@ -1,0 +1,79 @@
+img.bbcode-screenshot {
+	padding: 6px 30px 30px 30px;
+	filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+}
+
+iframe.bbcode-youtube {
+	padding: 20px 60px 20px 60px;
+	filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+}
+
+div.bbcode-gist, div.bbcode-pastebin {
+	padding: 30px;
+}
+
+span.bbcode-small {
+	color: #808080;
+	font-size: 75%;
+	line-height: 116%
+}
+
+div.bbcode-exception > pre,
+div.bbcode-format > pre,
+div.bbcode-groovy > pre,
+div.bbcode-output > pre,
+div.bbcode-properties > pre,
+div.bbcode-text > pre {
+	margin: 0;
+	padding: 0;
+	background: none;
+}
+
+div.bbcode-bash > pre {
+	background: #323338;
+	border-color:#545657;
+	margin:5px 20px;
+	box-shadow:0 2px 4px 0 rgba(0,0,0,0.1);
+}
+
+div.bbcode-bash > pre > code {
+	color: #2E8B57;
+}
+
+div.bbcode-exception > pre > code {
+	color: #BF0000;
+}
+
+div.bbcode-format > pre > code,
+div.bbcode-groovy > pre > code,
+div.bbcode-text > pre > code {
+	color: #2E8B57;
+}
+
+div.bbcode-output {
+	background: #323338;
+	border-color: #545657;
+	margin: 5px 20px;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+div.bbcode-output > p {
+	color: #DBDEE1;
+}
+
+div.bbcode-output > p > a {
+	color: #DD4A68;
+}
+
+div.bbcode-output > pre > code {
+	font-size: 9pt;
+	line-height: 1.2em;
+	color: #DBDEE1;
+	max-height: 460px;
+	overflow: visible;
+	text-shadow: none;
+}
+
+code span.token {
+	background: none;
+}
