@@ -18,7 +18,8 @@ span.bbcode-small {
 	line-height: 116%
 }
 
-div.bbcode-exception > pre,
+div.bbcode-bash > pre,
+div.bbcode-error > pre,
 div.bbcode-format > pre,
 div.bbcode-groovy > pre,
 div.bbcode-output > pre,
@@ -29,7 +30,7 @@ div.bbcode-text > pre {
 	background: none;
 }
 
-div.bbcode-bash > pre {
+div.bbcode-output {
 	background: #323338;
 	border-color:#545657;
 	margin:5px 20px;
@@ -40,22 +41,16 @@ div.bbcode-bash > pre > code {
 	color: #2E8B57;
 }
 
-div.bbcode-exception > pre > code {
+div.bbcode-error > pre > code {
 	color: #BF0000;
 }
 
+div.bash > pre > code,
 div.bbcode-format > pre > code,
 div.bbcode-groovy > pre > code,
 div.bbcode-properties > pre > code,
 div.bbcode-text > pre > code {
 	color: #2E8B57;
-}
-
-div.bbcode-output {
-	background: #323338;
-	border-color: #545657;
-	margin: 5px 20px;
-	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
 div.bbcode-output > p {
