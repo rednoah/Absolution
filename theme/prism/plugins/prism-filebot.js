@@ -1,4 +1,4 @@
-(function () {
+(function() {
 
 	if (typeof Prism === 'undefined') {
 		return;
@@ -60,7 +60,7 @@
 		'--filter': 'groovy',
 		'--file-filter': 'groovy',
 		'--apply': 'groovy'
-	}
+	};
 
 	// highlight format expressions in command-line option values
 	Prism.hooks.add('after-tokenize', env => {
@@ -70,24 +70,24 @@
 
 			env.tokens.filter(token => token instanceof Prism.Token).forEach(token => {
 				if (previousToken.type == 'parameter' && token.type == 'string') {
-					let language = options[previousToken.content]
+					let language = options[previousToken.content];
 					if (language) {
 						token.content = token.content.map(s => {
 							if (typeof s == 'string') {
 								if (s.startsWith('"') && s.endsWith('"')) {
-									return ['"', Prism.tokenize(s.substring(1, s.length - 1), Prism.languages[language]), '"']
+									return ['"', Prism.tokenize(s.substring(1, s.length - 1), Prism.languages[language]), '"'];
 								}
 								if (s.startsWith("'") && s.endsWith("'")) {
-									return ["'", Prism.tokenize(s.substring(1, s.length - 1), Prism.languages[language]), "'"]
+									return ["'", Prism.tokenize(s.substring(1, s.length - 1), Prism.languages[language]), "'"];
 								}
 							}
-							return s
+							return s;
 						});
 					}
 				}
-				previousToken = token
+				previousToken = token;
 			});
-		}		
+		}
 	});
 
 	// highlight regex code in Groovy slashy String values
@@ -97,23 +97,23 @@
 				tokens.filter(token => token instanceof Prism.Token).forEach(token => {
 					if (token.type == 'interpolation-string') {
 						token.content = token.content.map(i => {
-							let s = i.content
+							let s = i.content;
 							if (typeof s == 'string') {
 								if (s.startsWith('/') && s.endsWith('/') && s.length > 2) {
-									return ['/', Prism.tokenize(s.substring(1, s.length - 1), Prism.languages.regex), '/']	
+									return ['/', Prism.tokenize(s.substring(1, s.length - 1), Prism.languages.regex), '/'];
 								}
 							}
-							return i
+							return i;
 						});
-						return
+						return;
 					}
 					if (token.content instanceof Array) {
-						regex(token.content)
-						return
+						regex(token.content);
+						return;
 					}
 				});
 			}
-			regex(env.tokens)
+			regex(env.tokens);
 		}
 	});
 
