@@ -53,24 +53,33 @@
 	Prism.languages.groovy.concat = Prism.languages.filebot.concat;
 
 	// map option value to language
-	let options = {
-		'--format': 'format',
-		'--q': 'format',
-		'--mapper': 'groovy',
-		'--filter': 'groovy',
-		'--file-filter': 'groovy',
-		'--apply': 'groovy'
+	let languageHints = {
+		'option': {
+			'--format': 'format',
+			'--q': 'format',
+			'--mapper': 'groovy',
+			'--filter': 'groovy',
+			'--file-filter': 'groovy',
+			'--apply': 'groovy'
+		},
+		'parameter': {
+			'movieFormat': 'format',
+			'seriesFormat': 'format',
+			'animeFormat': 'format',
+			'musicFormat': 'format',
+			'unsortedFormat': 'format'
+		}	
 	};
 
 	// highlight format expressions in command-line option values
 	Prism.hooks.add('after-tokenize', env => {
 		if (env.language === 'bash' || env.language === 'shellsession') {
 			// select option value language depending on the context
-			var previousToken = {};
+			var language = null;
 
 			env.tokens.filter(token => token instanceof Prism.Token).forEach(token => {
-				if (previousToken.type == 'parameter' && token.type == 'string') {
-					let language = options[previousToken.content];
+				// highlight option value code
+				if (token.type == 'string') {
 					if (language) {
 						token.content = token.content.map(s => {
 							if (typeof s == 'string') {
@@ -84,8 +93,24 @@
 							return s;
 						});
 					}
+					return;
 				}
-				previousToken = token;
+
+				// change language context for the following option value
+				if (token.type == 'parameter') {
+					language = languageHints.option[token.content];
+					return;
+				}
+				// change language context for the following option value
+				if (token.type == 'assign-left') {
+					language = languageHints.parameter[token.content];
+					return;
+				}
+				// reset language context
+				if (token.type != 'operator') {
+					language = null;
+					return;
+				}
 			});
 		}
 	});
