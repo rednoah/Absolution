@@ -3,6 +3,10 @@ img.bbcode-screenshot {
 	filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
 }
 
+img.bbcode-icon {
+	vertical-align: sub;
+}
+
 iframe.bbcode-youtube {
 	padding: 20px 60px 20px 60px;
 	filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
