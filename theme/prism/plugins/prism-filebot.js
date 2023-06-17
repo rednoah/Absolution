@@ -123,8 +123,8 @@
 					if (token.type == 'interpolation-string') {
 						token.content = token.content.map(i => {
 							let s = i.content;
-							if (typeof s == 'string') {
-								if (s.startsWith('/') && s.endsWith('/') && s.length > 2) {
+							if (typeof s == 'string' && s.length > 2) {
+								if (s.startsWith('/') && s.endsWith('/')) {
 									return ['/', Prism.tokenize(s.substring(1, s.length - 1), Prism.languages.regex), '/'];
 								}
 							}
