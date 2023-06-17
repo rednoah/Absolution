@@ -82,7 +82,7 @@
 				if (token.type == 'string') {
 					if (language) {
 						token.content = token.content.map(s => {
-							if (typeof s == 'string') {
+							if (typeof s == 'string' && s.length > 2) {
 								if (s.startsWith('"') && s.endsWith('"')) {
 									return ['"', Prism.tokenize(s.substring(1, s.length - 1), Prism.languages[language]), '"'];
 								}
