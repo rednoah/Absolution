@@ -51,6 +51,7 @@ div.bbcode-groovy > pre > code,
 div.bbcode-properties > pre > code,
 div.bbcode-text > pre > code {
 	color: #2E8B57;
+	max-height: 300px;
 }
 
 div.bbcode-output > p {
