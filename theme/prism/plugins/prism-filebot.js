@@ -12,7 +12,7 @@
 			alias: 'function'
 		},
 		'include': {
-			pattern: /([@][^\n\r]+?[.](?:args|groovy)|[*][\w.-]*|\/path\/to\/[\w.-]*)/,
+			pattern: /([@][^\n\r]+?[.](?:txt|args|groovy)|[*][\w.-]*|\/path\/to\/[\w.-]*)/,
 			alias: 'keyword'
 		},
 		'concat': {
