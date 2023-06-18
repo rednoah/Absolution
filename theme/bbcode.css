@@ -1,4 +1,6 @@
 img.bbcode-screenshot {
+	max-width: 100%;
+	box-sizing: border-box;
 	padding: 6px 30px 30px 30px;
 	filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
 }
@@ -8,6 +10,8 @@ img.bbcode-icon {
 }
 
 iframe.bbcode-youtube {
+	max-width: 100%;
+	box-sizing: border-box;
 	padding: 20px 60px 20px 60px;
 	filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
 }
@@ -37,7 +41,7 @@ div.bbcode-text > pre {
 div.bbcode-output {
 	background: #323338;
 	border-color:#545657;
-	margin:5px 20px;
+	margin:5px 30px;
 	box-shadow:0 2px 4px 0 rgba(0,0,0,0.1);
 }
 
