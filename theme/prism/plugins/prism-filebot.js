@@ -71,74 +71,86 @@
 		}	
 	};
 
+	// enable syntax highlighting for format code and groovy code inside bash code
+	function tokenizeGroovy(tokens) {
+		// select option value language depending on the context
+		var language = null;
+
+		tokens.filter(token => token instanceof Prism.Token).forEach(token => {
+			// highlight option value code
+			if (token.type == 'string') {
+				if (language) {
+					token.content = token.content.map(s => {
+						if (typeof s == 'string' && s.length > 2) {
+							if (s.startsWith('"') && s.endsWith('"')) {
+								return ['"', Prism.tokenize(s.substring(1, s.length - 1), Prism.languages[language]), '"'];
+							}
+							if (s.startsWith("'") && s.endsWith("'")) {
+								return ["'", Prism.tokenize(s.substring(1, s.length - 1), Prism.languages[language]), "'"];
+							}
+						}
+						return s;
+					});
+				}
+				return;
+			}
+
+			// change language context for the following option value
+			if (token.type == 'parameter') {
+				language = languageHints.option[token.content];
+				return;
+			}
+			// change language context for the following option value
+			if (token.type == 'assign-left') {
+				language = languageHints.parameter[token.content];
+				return;
+			}
+			// enable syntax highlighting for groovy inside bash inside shellsession
+			if (token.type == 'command' || token.type == 'bash') {
+				tokenizeGroovy(token.content)
+				return;
+			}
+			// reset language context
+			if (token.type != 'operator') {
+				language = null;
+				return;
+			}
+		});
+	}
+
+	// enable syntax highlighting for format code and groovy code inside bash code
+	function tokenizeRegex(tokens) {
+		tokens.filter(token => token instanceof Prism.Token).forEach(token => {
+			if (token.type == 'interpolation-string') {
+				token.content = token.content.map(i => {
+					let s = i.content;
+					if (typeof s == 'string' && s.length > 2) {
+						if (s.startsWith('/') && s.endsWith('/')) {
+							return ['/', Prism.tokenize(s.substring(1, s.length - 1), Prism.languages.regex), '/'];
+						}
+					}
+					return i;
+				});
+				return;
+			}
+			if (token.content instanceof Array) {
+				tokenizeRegex(token.content);
+				return;
+			}
+		});
+	}
+
 	// highlight format expressions in command-line option values
 	Prism.hooks.add('after-tokenize', env => {
 		if (env.language === 'bash' || env.language === 'shellsession') {
-			// select option value language depending on the context
-			var language = null;
-
-			env.tokens.filter(token => token instanceof Prism.Token).forEach(token => {
-				// highlight option value code
-				if (token.type == 'string') {
-					if (language) {
-						token.content = token.content.map(s => {
-							if (typeof s == 'string' && s.length > 2) {
-								if (s.startsWith('"') && s.endsWith('"')) {
-									return ['"', Prism.tokenize(s.substring(1, s.length - 1), Prism.languages[language]), '"'];
-								}
-								if (s.startsWith("'") && s.endsWith("'")) {
-									return ["'", Prism.tokenize(s.substring(1, s.length - 1), Prism.languages[language]), "'"];
-								}
-							}
-							return s;
-						});
-					}
-					return;
-				}
-
-				// change language context for the following option value
-				if (token.type == 'parameter') {
-					language = languageHints.option[token.content];
-					return;
-				}
-				// change language context for the following option value
-				if (token.type == 'assign-left') {
-					language = languageHints.parameter[token.content];
-					return;
-				}
-				// reset language context
-				if (token.type != 'operator') {
-					language = null;
-					return;
-				}
-			});
+			tokenizeGroovy(env.tokens);
 		}
 	});
 
 	// highlight regex code in Groovy slashy String values
 	Prism.hooks.add('after-tokenize', env => {
 		if (env.language == 'format' || env.language == 'groovy') {
-			function regex(tokens) {
-				tokens.filter(token => token instanceof Prism.Token).forEach(token => {
-					if (token.type == 'interpolation-string') {
-						token.content = token.content.map(i => {
-							let s = i.content;
-							if (typeof s == 'string' && s.length > 2) {
-								if (s.startsWith('/') && s.endsWith('/')) {
-									return ['/', Prism.tokenize(s.substring(1, s.length - 1), Prism.languages.regex), '/'];
-								}
-							}
-							return i;
-						});
-						return;
-					}
-					if (token.content instanceof Array) {
-						regex(token.content);
-						return;
-					}
-				});
-			}
-			regex(env.tokens);
+			tokenizeRegex(env.tokens);
 		}
 	});
 
