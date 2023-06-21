@@ -4,6 +4,40 @@ body, a.forumtitle, a.topictitle, li.header dt, li.header dd, h3 {
 	font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+
+/* ------- Banner ------- */
+a.logo {
+	display: block;
+	text-decoration: none;
+	font-style: italic;
+	font-family: Verdana, Arial, sans-serif;
+	color: #EAEAEB;
+	padding: 17px 18px;
+	background: url(./images/logo-text-bg.png) no-repeat 0px 0px;
+}
+
+a.logo > img.logo {
+	float: left;
+}
+
+a.logo > span.title {
+	display: block;
+	font-size: 26pt;
+	letter-spacing: 0.03em;
+	text-shadow: 4px 3px 5px rgba(0, 0, 0, 0.8);
+	padding: 0px 5px 0px 85px;
+}
+
+a.logo > span.description {
+	display: block;
+	font-size: 8pt;
+	letter-spacing: 0.02em;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+	padding: 0px 5px 5px 100px;
+}
+
+
+/* ------- Forums ------- */
 .navbar > .inner > ul > li > a > i, ul#nav-footer > li.breadcrumbs > span.crumb > a > i, .copyright a {
 	color: #EA8708;
 }
