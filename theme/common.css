@@ -184,6 +184,7 @@ a:hover	{ text-decoration: underline; }
 .site-description {
 	float: left;
 	width: 65%;
+	margin-left: 10px;
 }
 
 .site-description h1 {
