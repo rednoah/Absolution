@@ -67,7 +67,8 @@
 			'seriesFormat': 'format',
 			'animeFormat': 'format',
 			'musicFormat': 'format',
-			'unsortedFormat': 'format'
+			'unsortedFormat': 'format',
+			'ignore': 'regex'
 		}	
 	};
 
