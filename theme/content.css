@@ -88,6 +88,10 @@ ul.topiclist dfn {
 	margin-right: 5px;
 }
 
+.forum-image > img {
+	width: 22px;
+}
+
 li.row {
 	border-bottom: 1px solid transparent;
     border-left: 1px solid transparent;
