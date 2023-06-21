@@ -85,11 +85,12 @@ ul.topiclist dfn {
 .forum-image {
 	float: left;
 	padding-top: 5px;
-	margin-right: 5px;
+	margin-left: 5px;
+    margin-right: 8px;
 }
 
 .forum-image > img {
-	width: 22px;
+	width: 24px;
 }
 
 li.row {
