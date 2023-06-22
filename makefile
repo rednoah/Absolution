@@ -4,7 +4,8 @@ include *.variables
 RSYNC := rsync --verbose --recursive --times --chmod=Du=rwx,Dgo=rx,Fu=rw,Fog=r --progress --human-readable --prune-empty-dirs --exclude .DS_Store
 
 
-sync:
+build:
+	./build.groovy "theme/stylesheet.css"
 	make push purge-cache
 
 push:
