@@ -6,11 +6,13 @@ body, a.forumtitle, a.topictitle, li.header dt, li.header dd, h3 {
 a.logo {
 	display: block;
 	text-decoration: none;
+	text-align: left;
 	font-style: italic;
 	font-family: Verdana, Arial, sans-serif;
 	color: #EAEAEB;
 	padding: 17px 18px;
 	background: url(./images/logo-text-bg.png) no-repeat 0px 0px;
+	width: 377px;
 }
 
 a.logo > img.logo {
