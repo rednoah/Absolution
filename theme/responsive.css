@@ -165,6 +165,12 @@
 
 	/* Logo block
 	----------------------------------------*/
+	.site-description {
+		float: none;
+		width: 377px;
+		margin: auto;
+	}
+
 	.search-header {
 		display: none;
 	}
