@@ -5,19 +5,20 @@ img.bbcode-screenshot {
 	filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
 }
 
+a.bbcode-button > img {
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
 img.bbcode-icon {
 	vertical-align: sub;
 }
 
-iframe.bbcode-youtube {
+iframe.bbcode-youtube, iframe.bbcode-pastebin {
 	max-width: 100%;
 	box-sizing: border-box;
 	padding: 20px 60px 20px 60px;
 	filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
-}
-
-div.bbcode-gist, div.bbcode-pastebin {
-	padding: 30px;
 }
 
 span.bbcode-small {
