@@ -26,48 +26,28 @@
 	// add path list format
 	Prism.languages.path = {
 		'drive': {
-			pattern: /^([A-Z])[:][\/\\][^\/\\]*[\/\\]/m,
-			alias: 'doctype'
+			pattern: /^([A-Z])[:][\/\\][^\/\\]+[\/\\]/m,
+			alias: 'prolog'
 		},
 		'root': {
-			pattern: /^[\/\\][^\/\\]+[\/\\]/m,
-			alias: 'doctype'
+			pattern: /^[\/\\][^\/\\]+[\/\\][^\/\\]+[\/\\]/m,
+			alias: 'prolog'
 		},
 		'share': {
 			pattern: /^[\/\\]{2}[^\/\\]+[\/\\][^\/\\]+[\/\\]/m,
+			alias: 'prolog'
+		},
+		'dot': {
+			pattern: /^[.]{1,2}[\/\\]/m,
+			alias: 'prolog'
+		},
+		'extension': {
+			pattern: /[.][a-z0-9]{1,7}(?=$|\t)/m,
 			alias: 'doctype'
 		},
-		'separator': {
-			pattern: /[\/\\]/,
-			alias: 'keyword'
-		},
-		'marker': {
-			pattern: /\{[a-z]+[-]\d+\}/,
-			alias: 'selector'
-		},
-		'season': {
-			pattern: /^Season\s\d+/m,
-			alias: 'selector'
-		},
-		'name': {
-			pattern: /[^\/\\]+[.][^\/\\]{3}(?=$|\t)/m,
-			inside: {
-				'episode': {
-					pattern: /S\d+E\d+|\d+[x]\d+/i,
-					alias: 'selector'
-				},
-				'extension': {
-					pattern: /[.][^\/\\]{3}(?=$|\t)/m,
-					alias: 'doctype'
-				}
-			}
-		},
-		'keyword': {
-			pattern: /^(Media|TV.Shows|Movies|Anime)$/m,
-		},
 		'json': {
-			pattern: /\t\{[^\n\r]+\}$/m,
-			inside: Prism.languages.json
+			pattern: /\t\{.+\}$/m,
+			alias: ['comment', 'namespace']
 		}
 	};
 
