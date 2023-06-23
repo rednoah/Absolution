@@ -23,34 +23,6 @@
 		}
 	};
 
-	// add path list format
-	Prism.languages.path = {
-		'drive': {
-			pattern: /^([A-Z])[:][\/\\][^\/\\]+[\/\\]/m,
-			alias: 'prolog'
-		},
-		'root': {
-			pattern: /^[\/\\][^\/\\]+[\/\\][^\/\\]+[\/\\]/m,
-			alias: 'prolog'
-		},
-		'share': {
-			pattern: /^[\/\\]{2}[^\/\\]+[\/\\][^\/\\]+[\/\\]/m,
-			alias: 'prolog'
-		},
-		'dot': {
-			pattern: /^[.]{1,2}[\/\\]/m,
-			alias: 'prolog'
-		},
-		'extension': {
-			pattern: /[.][a-z0-9]{1,7}(?=$|\t)/m,
-			alias: 'doctype'
-		},
-		'json': {
-			pattern: /\t\{.+\}$/m,
-			alias: ['comment', 'namespace']
-		}
-	};
-
 	// add format syntax
 	Prism.languages.format = {
 		'expression-1': {
