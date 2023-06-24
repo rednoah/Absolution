@@ -20,6 +20,15 @@
 			lookbehind: true,
 			greedy: true,
 			alias: 'keyword'
+		},
+		'flag': {
+			pattern: /(^|\s)-{1,2}[a-z-]+(?=\s|$)/,
+			lookbehind: true,
+			alias: 'variable'
+		},
+		'stop': {
+			pattern: /\s--\s[^\r\n]+/,
+			greedy: true
 		}
 	};
 
@@ -46,6 +55,8 @@
 	// extend bash syntax
 	Prism.languages.bash.executable = Prism.languages.filebot.executable;
 	Prism.languages.bash.include = Prism.languages.filebot.include;
+	Prism.languages.bash.flag = Prism.languages.filebot.flag;
+	Prism.languages.bash.stop = Prism.languages.filebot.stop;
 	Prism.languages.bash.string[0].inside.include = Prism.languages.filebot.include;
 	Prism.languages.bash.string[3].inside = [Prism.languages.filebot.include];
 
