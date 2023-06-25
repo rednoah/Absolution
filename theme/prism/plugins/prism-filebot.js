@@ -21,6 +21,15 @@
 			greedy: true,
 			alias: 'keyword'
 		},
+		'binding': {
+			// html('https://www.filebot.net/naming.html').select('#bindings kbd.variable').collect{ it.text() }.join('|')
+			pattern: /\b(?:n|y|s|e|sxe|s00e00|t|d|startdate|absolute|ny|es|sy|sc|di|dc|age|special|episode|series|primaryTitle|alias|movie|id|tmdbid|tvdbid|imdbid|pi|pc|lang|subt|plex|kodi|emby|az|object|type|anime|regular|music|medium|album|artist|albumArtist|actors|director|collection|ci|cy|genre|genres|languages|country|runtime|certification|rating|votes|vcf|vc|ac|cf|vf|hpi|aco|acf|af|channels|resolution|width|height|bitdepth|hdr|bitrate|vbr|abr|fps|khz|ar|ws|hd|dt|vs|source|edition|tags|s3d|group|original|historic|info|omdb|localize|order|db|fn|ext|f|folder|drive|files|relativeFile|mediaFile|mediaTitle|audioLanguages|textLanguages|duration|seconds|minutes|hours|bytes|megabytes|gigabytes|ct|crc32|media|video|audio|text|camera|location|today|home|output|defines|label|self|model|AnimeList|XEM)\b/i,
+			alias: 'important'
+		},
+		'global': {
+			pattern: /\b(?:null|none|any|allOf|concat|quote|toJson|include|text|csv|lines|xml|json|html)\b/,
+			alias: 'variable'
+		},
 		'flag': {
 			pattern: /(^|\s)-{1,2}[a-z-]+(?=\s|$)/,
 			lookbehind: true,
@@ -62,6 +71,8 @@
 
 	// extend groovy syntax
 	Prism.languages.groovy.concat = Prism.languages.filebot.concat;
+	Prism.languages.groovy.binding = Prism.languages.filebot.binding;
+	Prism.languages.groovy.global = Prism.languages.filebot.global;
 
 	// map option value to language
 	let languageHints = {
