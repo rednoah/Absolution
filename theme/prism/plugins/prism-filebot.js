@@ -7,7 +7,7 @@
 	// custom syntax patterns
 	Prism.languages.filebot = {
 		'executable': {
-			pattern: /(^|[\s;|&]|[<>]\()(?:filebot|(?:fn|dev)[:][.a-z]+|true|false|\/(?:\w+\/)*bin\/\w+|TheMovieDB::TV|TheTVDB|AniDB|TheMovieDB|OMDb|AcoustID|ID3|xattr|file|exif|interactive|MOVE|COPY|SYMLINK|HARDLINK|KEEPLINK|DUPLICATE|CLONE|TEST|SKIP|OVERRIDE|AUTO|INDEX|FAIL|artwork|cover|nfo|url|metadata|import|srt|subtitles|finder|tags|date|chmod|touch|reveal|prune|clean|refresh|OFF|SEVERE|WARNING|INFO|CONFIG|FINE|FINER|FINEST|ALL)(?=$|[)\s;|&])/i,
+			pattern: /(^|[\s;|&]|[<>]\()(?:filebot(?:[.]sh)?|(?:fn|dev)[:][.a-z]+|true|false|\/(?:\w+\/)*bin\/\w+|TheMovieDB::TV|TheTVDB|AniDB|TheMovieDB|OMDb|AcoustID|ID3|xattr|file|exif|interactive|MOVE|COPY|SYMLINK|HARDLINK|KEEPLINK|DUPLICATE|CLONE|TEST|SKIP|OVERRIDE|AUTO|INDEX|FAIL|artwork|cover|nfo|url|metadata|import|srt|subtitles|finder|tags|date|chmod|touch|reveal|prune|clean|refresh|OFF|SEVERE|WARNING|INFO|CONFIG|FINE|FINER|FINEST|ALL)(?=$|[)\s;|&])/i,
 			lookbehind: true,
 			alias: 'function'
 		},
@@ -28,7 +28,7 @@
 		},
 		'global': {
 			pattern: /\b(?:null|none|any|allOf|concat|quote|toJson|include|text|csv|lines|xml|json|html)\b/,
-			alias: 'variable'
+			alias: 'function'
 		},
 		'flag': {
 			pattern: /(^|\s)-{1,2}[a-z-]+(?=\s|$)/,
