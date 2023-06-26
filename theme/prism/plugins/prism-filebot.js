@@ -4,56 +4,63 @@
 		return;
 	}
 
-	// custom syntax patterns
-	Prism.languages.filebot = {
-		'executable': {
-			pattern: /(^|[\s;|&]|[<>]\()(?:filebot(?:[.]sh)?|(?:fn|dev)[:][.a-z]+|true|false|\/(?:\w+\/)*bin\/[\w.-]+|TheMovieDB::TV|TheTVDB|AniDB|TheMovieDB|OMDb|AcoustID|ID3|xattr|file|exif|interactive|MOVE|COPY|SYMLINK|HARDLINK|KEEPLINK|DUPLICATE|CLONE|TEST|SKIP|OVERRIDE|AUTO|INDEX|FAIL|artwork|cover|nfo|url|metadata|import|srt|subtitles|finder|tags|date|chmod|touch|reveal|prune|clean|refresh|OFF|SEVERE|WARNING|INFO|CONFIG|FINE|FINER|FINEST|ALL)(?=$|[)\s;|&])/i,
-			lookbehind: true,
-			alias: 'function'
-		},
-		'include': {
-			pattern: /([@][^\n\r]+?[.](?:txt|args|groovy)|[*][\w.-]*|\/input|\/output|\/path\/to\/[\w\s.-]*)/,
-			alias: 'keyword'
-		},
-		'concat': {
-			pattern: /(^|\r|\n)([@][^\n]+?[.](?:format|groovy)(?=$|\r|\n))/,
-			lookbehind: true,
-			greedy: true,
-			alias: 'keyword'
-		},
-		'binding': {
-			// html('https://www.filebot.net/naming.html').select('#bindings kbd.variable')*.text().join('|')
-			pattern: /\b(?:n|y|s|e|sxe|s00e00|t|d|startdate|absolute|ny|es|sy|sc|di|dc|age|special|episode|series|primaryTitle|alias|movie|id|tmdbid|tvdbid|imdbid|pi|pc|lang|subt|plex|kodi|emby|jellyfin|az|object|type|anime|regular|music|medium|album|artist|albumArtist|actors|director|collection|ci|cy|genre|genres|languages|country|runtime|certification|rating|votes|vcf|vc|ac|cf|vf|hpi|aco|acf|af|channels|resolution|width|height|bitdepth|hdr|bitrate|vbr|abr|fps|khz|ar|ws|hd|dt|vs|source|edition|tags|s3d|group|original|historic|info|omdb|localize|order|db|fn|ext|f|folder|drive|files|relativeFile|mediaFile|mediaTitle|audioLanguages|textLanguages|duration|seconds|minutes|hours|bytes|megabytes|gigabytes|ct|crc32|media|video|audio|text|camera|location|today|home|output|defines|label|self|model|AnimeList|XEM)(?:[.]\w+)*\b(?![({])/i,
-			lookbehind: true,
-			greedy: true,
-			inside: {
-				'global': {
-					pattern: /^\w+/
-				},
-				'property': {
-					pattern: /\w+/
-				},
-				'punctuation': {
-					pattern: /\./
-				}
+	// extend bash syntax
+	Prism.languages.bash.executable = {
+		pattern: /(^|[\s;|&]|[<>]\()(?:filebot(?:[.]sh)?|(?:fn|dev)[:][.a-z]+|true|false|\/(?:\w+\/)*bin\/[\w.-]+|TheMovieDB::TV|TheTVDB|AniDB|TheMovieDB|OMDb|AcoustID|ID3|xattr|file|exif|interactive|MOVE|COPY|SYMLINK|HARDLINK|KEEPLINK|DUPLICATE|CLONE|TEST|SKIP|OVERRIDE|AUTO|INDEX|FAIL|artwork|cover|nfo|url|metadata|import|srt|subtitles|finder|tags|date|chmod|touch|reveal|prune|clean|refresh|OFF|SEVERE|WARNING|INFO|CONFIG|FINE|FINER|FINEST|ALL)(?=$|[)\s;|&])/i,
+		lookbehind: true,
+		alias: 'function'
+	};
+	Prism.languages.bash.include = {
+		pattern: /([@][^\n\r]+?[.](?:txt|args|groovy)|[*][\w.-]*|\/input|\/output|\/path\/to\/[\w\s.-]*)/,
+		alias: 'keyword'
+	};
+	Prism.languages.bash.flag = {
+		pattern: /(^|\s)-{1,2}[a-z-]+(?=\s|$)/,
+		lookbehind: true,
+		alias: 'variable'
+	};
+	Prism.languages.bash.stop = {
+		pattern: /\s--\s[^\r\n]+/,
+		greedy: true
+	};
+	Prism.languages.bash.string[0].inside.include = Prism.languages.bash.include;
+	Prism.languages.bash.string[3].inside = [Prism.languages.bash.include];
+
+	// extend groovy syntax
+	Prism.languages.groovy.concat = {
+		pattern: /(^|\r|\n)([@][^\n]+?[.](?:format|groovy)(?=$|\r|\n))/,
+		lookbehind: true,
+		greedy: true,
+		alias: 'keyword'
+	};
+	Prism.languages.groovy.binding = {
+		// html('https://www.filebot.net/naming.html').select('#bindings kbd.variable')*.text().join('|')
+		pattern: /\b(?:n|y|s|e|sxe|s00e00|t|d|startdate|absolute|ny|es|sy|sc|di|dc|age|special|episode|series|primaryTitle|alias|movie|id|tmdbid|tvdbid|imdbid|pi|pc|lang|subt|plex|kodi|emby|jellyfin|az|object|type|anime|regular|music|medium|album|artist|albumArtist|actors|director|collection|ci|cy|genre|genres|languages|country|runtime|certification|rating|votes|vcf|vc|ac|cf|vf|hpi|aco|acf|af|channels|resolution|width|height|bitdepth|hdr|bitrate|vbr|abr|fps|khz|ar|ws|hd|dt|vs|source|edition|tags|s3d|group|original|historic|info|omdb|localize|order|db|fn|ext|f|folder|drive|files|relativeFile|mediaFile|mediaTitle|audioLanguages|textLanguages|duration|seconds|minutes|hours|bytes|megabytes|gigabytes|ct|crc32|media|video|audio|text|camera|location|today|home|output|defines|label|self|model|AnimeList|XEM)(?:[.]\w+)*\b(?![({])/i,
+		lookbehind: true,
+		greedy: true,
+		inside: {
+			'global': {
+				pattern: /^\w+/
+			},
+			'property': {
+				pattern: /\w+/
+			},
+			'punctuation': {
+				pattern: /\./
 			}
-		},
-		'global': {
-			pattern: /\b(?:null|none|any|allOf|concat|quote|toJson|include|text|csv|lines|xml|json|html)\b/,
-			alias: 'function'
-		},
-		'flag': {
-			pattern: /(^|\s)-{1,2}[a-z-]+(?=\s|$)/,
-			lookbehind: true,
-			alias: 'variable'
-		},
-		'stop': {
-			pattern: /\s--\s[^\r\n]+/,
-			greedy: true
 		}
 	};
+	Prism.languages.groovy.global = {
+		pattern: /\b(?:null|none|any|allOf|concat|quote|toJson|include|text|csv|lines|xml|json|html)\b/,
+		alias: 'function'
+	};
+	Prism.languages.groovy.tail = {
+		pattern: /^\w+$/,
+		lookbehind: true,
+		alias: 'function'
+	};
 
-	// add format syntax
+	// add custom format language
 	Prism.languages.format = {
 		'expression-1': {
 			pattern: /{[^{}]+}/,
@@ -70,21 +77,8 @@
 			greedy: true,
 			inside: Prism.languages.groovy
 		},
-		'concat': Prism.languages.filebot.concat
+		'concat': Prism.languages.groovy.concat
 	};
-
-	// extend bash syntax
-	Prism.languages.bash.executable = Prism.languages.filebot.executable;
-	Prism.languages.bash.include = Prism.languages.filebot.include;
-	Prism.languages.bash.flag = Prism.languages.filebot.flag;
-	Prism.languages.bash.stop = Prism.languages.filebot.stop;
-	Prism.languages.bash.string[0].inside.include = Prism.languages.filebot.include;
-	Prism.languages.bash.string[3].inside = [Prism.languages.filebot.include];
-
-	// extend groovy syntax
-	Prism.languages.groovy.concat = Prism.languages.filebot.concat;
-	Prism.languages.groovy.binding = Prism.languages.filebot.binding;
-	Prism.languages.groovy.global = Prism.languages.filebot.global;
 
 	// map option value to language
 	let languageHints = {
