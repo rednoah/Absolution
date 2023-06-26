@@ -80,5 +80,19 @@ div.bbcode-output > pre > code {
 }
 
 code span.token {
+	text-shadow: none !important;
 	background: none !important;
+}
+
+code.language-format span.token.binding > span.token.global {
+	color: #0066FF;
+}
+
+code.language-format span.token.binding {
+	font-weight: bolder;
+}
+
+code.language-format span.token.punctuation.brace-level-1 {
+	color: #5F97B6;
+	font-weight: bolder;
 }
