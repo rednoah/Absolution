@@ -79,8 +79,11 @@ div.bbcode-output > pre > code {
 	text-shadow: none;
 }
 
+code {
+	text-shadow: none !important;	
+}
+
 code span.token {
-	text-shadow: none !important;
 	background: none !important;
 }
 
