@@ -54,11 +54,6 @@
 		pattern: /\b(?:null|none|any|allOf|concat|quote|toJson|include|text|csv|lines|xml|json|html)\b/,
 		alias: 'function'
 	};
-	Prism.languages.groovy.tail = {
-		pattern: /^\w+$/,
-		lookbehind: true,
-		alias: 'function'
-	};
 
 	// add custom format language
 	Prism.languages.format = {
