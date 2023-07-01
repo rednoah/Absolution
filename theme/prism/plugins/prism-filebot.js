@@ -11,7 +11,7 @@
 		alias: 'function'
 	};
 	Prism.languages.bash.include = {
-		pattern: /([@][^\n\r]+?[.](?:txt|args|groovy)|[*][\w.-]*|\/input|\/output|\/path\/to\/[\w\s.-]*)/,
+		pattern: /([@][^\n\r]+?[.](?:txt|args|groovy)|[*][\w.-]*|\/input|\/output|\/path\/to\/[\w.-]*[\w.\s]*)/,
 		alias: 'keyword'
 	};
 	Prism.languages.bash.flag = {
