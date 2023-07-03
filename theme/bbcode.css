@@ -87,11 +87,11 @@ code span.token {
 	background: none !important;
 }
 
-code.language-format span.token.binding > span.token.global {
+span.token.binding > span.token.global {
 	color: #0066FF;
 }
 
-code.language-format span.token.binding {
+span.token.binding {
 	font-weight: bolder;
 }
 
