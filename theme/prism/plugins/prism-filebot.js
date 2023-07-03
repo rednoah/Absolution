@@ -21,7 +21,8 @@
 	};
 	Prism.languages.bash.stop = {
 		pattern: /\s--\s[^\r\n]+/,
-		greedy: true
+		greedy: true,
+		alias: 'punctuation'
 	};
 	Prism.languages.bash.string[0].inside.include = Prism.languages.bash.include;
 	Prism.languages.bash.string[3].inside = [Prism.languages.bash.include];
@@ -38,6 +39,7 @@
 		pattern: /\b(?:n|y|s|e|sxe|s00e00|t|d|startdate|absolute|ny|es|sy|sc|di|dc|age|special|episode|series|primaryTitle|alias|movie|id|tmdbid|tvdbid|imdbid|pi|pc|lang|subt|plex|kodi|emby|jellyfin|az|object|type|anime|regular|music|medium|album|artist|albumArtist|actors|director|collection|ci|cy|genre|genres|languages|country|runtime|certification|rating|votes|vcf|vc|ac|cf|vf|hpi|aco|acf|af|channels|resolution|width|height|bitdepth|hdr|bitrate|vbr|abr|fps|khz|ar|ws|hd|dt|vs|source|edition|tags|s3d|group|original|historic|info|omdb|localize|order|db|fn|ext|f|folder|drive|files|relativeFile|mediaFile|mediaTitle|audioLanguages|textLanguages|duration|seconds|minutes|hours|bytes|megabytes|gigabytes|ct|crc32|media|video|audio|text|camera|location|today|home|output|defines|label|self|model|AnimeList|XEM)(?:[.]\w+)*\b(?![({])/i,
 		lookbehind: true,
 		greedy: true,
+		alias: 'variable',
 		inside: {
 			'global': {
 				pattern: /^\w+/
@@ -83,6 +85,7 @@
 			'--mapper': 'groovy',
 			'--filter': 'groovy',
 			'--file-filter': 'groovy',
+			'--file-order': 'groovy',
 			'--apply': 'groovy'
 		},
 		'parameter': {
@@ -120,7 +123,7 @@
 			}
 
 			// change language context for the following option value
-			if (token.type == 'parameter') {
+			if (token.type == 'parameter' || token.type == 'flag') {
 				language = languageHints.option[token.content];
 				return;
 			}
