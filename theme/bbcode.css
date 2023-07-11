@@ -21,10 +21,15 @@ iframe.bbcode-youtube, iframe.bbcode-pastebin {
 	filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
 }
 
+h4.bbcode-h {
+	border-bottom: thin dotted #C6B9F6C7;
+	margin-bottom: 8px;
+}
+
 h4.bbcode-h a {
 	font-size: large;
-	text-decoration: underline;
-	margin: 12px 0px;
+	text-decoration: none;
+	margin: 2px 0px;
 }
 
 span.bbcode-small {
