@@ -23,7 +23,7 @@ iframe.bbcode-youtube, iframe.bbcode-pastebin {
 
 h4.bbcode-h {
 	border-bottom: thin dotted #C6B9F6C7;
-	margin-bottom: 8px;
+	margin: 8px 0px;
 }
 
 h4.bbcode-h a {
