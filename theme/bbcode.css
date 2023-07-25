@@ -106,6 +106,10 @@ span.token.binding {
 	font-weight: bolder;
 }
 
+code.language-bash span.token.assign-left.variable {
+	color: #8000FF;
+}
+
 code.language-format span.token.punctuation.brace-level-1 {
 	color: #5F97B6;
 	font-weight: bolder;
