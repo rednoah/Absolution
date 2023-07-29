@@ -106,7 +106,7 @@ span.token.binding {
 	font-weight: bolder;
 }
 
-code.language-bash span.token.assign-left.variable {
+span.token.assign-left.variable {
 	color: #8000FF;
 }
 
