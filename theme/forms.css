@@ -371,6 +371,15 @@ a.button1, a.button2 {
 	vertical-align: text-bottom;
 }
 
+#login a.button2 {
+	font-size: 14px;
+	padding: 2px 8px;
+}
+
+#login a.button2:before {
+	content: "👤 ";
+}
+
 /* Hover states */
 a.button1:hover, input.button1:hover, a.button2:hover, input.button2:hover, input.button3:hover {
 	border: 1px solid transparent;
