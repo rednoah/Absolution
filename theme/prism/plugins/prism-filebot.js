@@ -57,7 +57,7 @@
 		alias: 'function'
 	};
 	Prism.languages.groovy.dgm = {
-		pattern: /\b(?:find|findAll)\b/,
+		pattern: /\b(?:find|findAll|findResult|findResults)\b/,
 		lookbehind: true,
 		alias: 'function'
 	};
