@@ -98,6 +98,7 @@
 			'animeFormat': 'format',
 			'musicFormat': 'format',
 			'unsortedFormat': 'format',
+			'exec': 'format',
 			'ignore': 'regex'
 		}	
 	};
