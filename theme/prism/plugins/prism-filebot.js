@@ -100,7 +100,7 @@
 			'unsortedFormat': 'format',
 			'exec': 'format',
 			'ignore': 'regex'
-		}	
+		}
 	};
 
 	// enable syntax highlighting for format code and groovy code inside bash code
