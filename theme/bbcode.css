@@ -108,6 +108,7 @@ span.token.binding > span.token.global {
 
 span.token.binding {
 	font-weight: bolder;
+	-webkit-font-smoothing: antialiased; /* Fix for Safari font-weight: bolder; rendering issues */
 }
 
 span.token.assign-left.variable {
