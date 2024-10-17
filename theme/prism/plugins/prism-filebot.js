@@ -53,7 +53,7 @@
 		}
 	};
 	Prism.languages.groovy.global = {
-		pattern: /\b(?:null|none|any|allOf|concat|quote|toJson|include|text|csv|lines|xml|json|html|XML)\b/,
+		pattern: /\b(?:null|it|none|any|allOf|concat|quote|toJson|include|text|csv|lines|xml|json|html|XML)\b/,
 		alias: 'function'
 	};
 	Prism.languages.groovy.dgm = {
