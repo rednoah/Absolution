@@ -44,6 +44,8 @@ div.bbcode-format > pre,
 div.bbcode-groovy > pre,
 div.bbcode-output > pre,
 div.bbcode-properties > pre,
+div.bbcode-xml > pre,
+div.bbcode-json > pre,
 div.bbcode-text > pre {
 	margin: 0;
 	padding: 0;
@@ -69,6 +71,8 @@ div.bash > pre > code,
 div.bbcode-format > pre > code,
 div.bbcode-groovy > pre > code,
 div.bbcode-properties > pre > code,
+div.bbcode-xml > pre > code,
+div.bbcode-json > pre > code,
 div.bbcode-text > pre > code {
 	color: #2E8B57;
 	max-height: 300px;
