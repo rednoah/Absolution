@@ -32,6 +32,25 @@ h4.bbcode-h a {
 	margin: 2px 0px;
 }
 
+div.bbcode-hr {
+	border-top: thin dashed #C6B9F6C7;
+	margin: 2em 0em;
+	text-align: center;
+	line-height: 0;
+}
+
+div.bbcode-hr span {
+	position: relative;
+	line-height: 0;
+	border: thin solid #C6B9F6C7;
+	padding: 3px 6px;
+	background-color: #ECF3F7;
+}
+
+div.bbcode-hr span:empty {
+	display: none;
+}
+
 span.bbcode-small {
 	color: #808080;
 	font-size: 75%;
