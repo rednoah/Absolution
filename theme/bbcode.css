@@ -33,18 +33,18 @@ h4.bbcode-h a {
 }
 
 div.bbcode-hr {
-	border-top: thin dashed #C6B9F6C7;
-	margin: 2em 0em;
+	border-top: thin dashed #C6B9F6;
+	margin: 40px 0;
 	text-align: center;
 	line-height: 0;
 }
 
 div.bbcode-hr span {
-	position: relative;
 	line-height: 0;
-	border: thin solid #C6B9F6C7;
-	padding: 3px 6px;
-	background-color: #ECF3F7;
+	border: thin solid #C6B9F6;
+	border-radius: 0.4em;
+	padding: 2px 6px;
+	background-color: white;
 }
 
 div.bbcode-hr span:empty {
