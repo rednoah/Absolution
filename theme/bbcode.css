@@ -34,7 +34,7 @@ h4.bbcode-h a {
 
 div.bbcode-hr {
 	border-top: thin dashed #C6B9F6;
-	margin: 40px 0;
+	margin: 50px 0;
 	text-align: center;
 	line-height: 0;
 }
@@ -42,7 +42,7 @@ div.bbcode-hr {
 div.bbcode-hr span {
 	line-height: 0;
 	border: thin solid #C6B9F6;
-	border-radius: 0.4em;
+	border-radius: 6px;
 	padding: 2px 6px;
 	background-color: white;
 }
