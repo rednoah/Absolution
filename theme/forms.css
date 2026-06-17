@@ -371,11 +371,13 @@ a.button1, a.button2 {
 	vertical-align: text-bottom;
 }
 
+a.button2[href*="/oauth/"],
 #login a.button2 {
 	font-size: 14px;
 	padding: 2px 8px;
 }
 
+a.button2[href*="/oauth/"]:before,
 #login a.button2:before {
 	content: "👤 ";
 }
