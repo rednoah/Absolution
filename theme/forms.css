@@ -371,16 +371,26 @@ a.button1, a.button2 {
 	vertical-align: text-bottom;
 }
 
-a.button2[href*="/oauth/"],
-#login a.button2 {
+
+/* Login with Google buttons */
+a.button2[href*="/ucp.php?mode=register"] {
 	font-size: 14px;
 	padding: 2px 8px;
 }
 
-a.button2[href*="/oauth/"]:before,
-#login a.button2:before {
+a.button2[href*="/ucp.php?mode=register"]:before {
 	content: "👤 ";
 }
+
+a.button2[href*="/user/oauth/login"] {
+	font-size: 14px;
+	padding: 2px 8px;
+}
+
+a.button2[href*="/user/oauth/login"]:before {
+	content: "👤 Login with ";
+}
+
 
 /* Hover states */
 a.button1:hover, input.button1:hover, a.button2:hover, input.button2:hover, input.button3:hover {
